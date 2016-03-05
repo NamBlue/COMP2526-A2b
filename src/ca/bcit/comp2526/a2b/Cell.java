@@ -1,9 +1,10 @@
-package ca.bcit.comp2526.a2a;
+package ca.bcit.comp2526.a2b;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ import javax.swing.JPanel;
  * Represented by a brown Cell.
  * 
  * @author Jia Qi Lee
- * @version 1.0
+ * @version 2.0
  */
 public class Cell extends JPanel {
     private final int row;
@@ -53,7 +54,8 @@ public class Cell extends JPanel {
         final int ten = 10;
         final int forty = 40;
         final int hundred = 100;
-        int seed = RandomGenerator.nextNumber(hundred);
+        final Random gen = new Random();
+        int seed = gen.nextInt(hundred);
         
 
         if (seed < ten) {

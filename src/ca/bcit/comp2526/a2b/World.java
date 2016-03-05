@@ -1,20 +1,22 @@
-package ca.bcit.comp2526.a2a;
+package ca.bcit.comp2526.a2b;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The World built with Cells, does not wrap around the edges.
  * It is flat but nothing falls off the edge either.
  * 
  * @author Jia Qi Lee
- * @version 1.0
+ * @version 2.0
  */
 public class World {
     private final int rows;
     private final int cols;
+    private final Random gen;
     private Cell[][] map;
     private int time; //Stores the amount of time(turns) that has passed for this world
-    private boolean bc; //True for year in BC, false for year in AD
+    private boolean bc; //True for year in BC, false for year in AD    
     
     /**
      * Constructor for objects of type World.
@@ -32,6 +34,7 @@ public class World {
         map = new Cell[rows][cols];
         time = 5000;
         bc = true;
+        gen = new Random();
         System.out.println("Dawn of Life! This is year " 
                 + time + (bc ? " BC" : " AD"));
     }
@@ -76,8 +79,11 @@ public class World {
      */
     private void spawn() {
         Cell cell;
+        final int ten = 10;
+        final int twenty = 30;
+        final int hundred = 100;
         
-        if (RandomGenerator.nextNumber(100) < 10) {
+        if (gen.nextInt(hundred) < twenty) {
             cell = getRandomEmptyCell();
             
             if (cell != null) {
@@ -86,7 +92,7 @@ public class World {
                 herbivore.revalidate();
             }
         }
-        if (RandomGenerator.nextNumber(100) < 30) {
+        if (gen.nextInt(hundred) < twenty) {
             cell = getRandomEmptyCell();
             
             if (cell != null) {
@@ -109,7 +115,7 @@ public class World {
         if (cellList.size() == 0) {
             return null;
         } else {
-            seed = RandomGenerator.nextNumber(cellList.size() - 1);
+            seed = gen.nextInt(cellList.size());
             cell = cellList.get(seed);
             return cell;
         }

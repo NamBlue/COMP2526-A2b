@@ -1,16 +1,15 @@
-package ca.bcit.comp2526.a2a;
+package ca.bcit.comp2526.a2b;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.JPanel;
 
 /**
  * The Plant, represented as a green Cell.
  * 
  * @author Jia Qi Lee
- * @version 1.0
+ * @version 2.0
  */
-public class Plant extends JPanel implements Inhabitant {
+public class Plant extends Inhabitant {
     private Cell cell;
         
     /**

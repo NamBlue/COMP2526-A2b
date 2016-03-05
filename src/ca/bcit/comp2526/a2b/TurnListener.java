@@ -1,4 +1,4 @@
-package ca.bcit.comp2526.a2a;
+package ca.bcit.comp2526.a2b;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
  * MouseListener class for GameFrame.
  * 
  * @author Jia Qi Lee
- * @version 1.0
+ * @version 2.0
  */
 public class TurnListener extends MouseAdapter{
     private final GameFrame gameframe;

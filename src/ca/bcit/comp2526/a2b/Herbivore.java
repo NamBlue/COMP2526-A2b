@@ -1,18 +1,17 @@
-package ca.bcit.comp2526.a2a;
+package ca.bcit.comp2526.a2b;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-
-import javax.swing.JPanel;
+import java.util.Random;
 
 /**
  * The Herbivore, represented as a yellow Cell.
  * 
  * @author Jia Qi Lee
- * @version 1.0
+ * @version 2.0
  */
-public class Herbivore extends JPanel implements Inhabitant {
+public class Herbivore extends Inhabitant {
     private Cell cell;
     private int hunger;
     private boolean turnTaken;
@@ -28,7 +27,7 @@ public class Herbivore extends JPanel implements Inhabitant {
                     "Parameter cannot be null");
         }
         cell = location;
-        hunger = 1;
+        hunger = 0;
         turnTaken = false;
     }
     
@@ -70,10 +69,10 @@ public class Herbivore extends JPanel implements Inhabitant {
      * Herbivore takes its turn.
      */
     public void takeTurn() {
-        final int five = 5;
+        final int hungry = 10;
         
         if (!turnTaken) {
-            if (hunger == five) {
+            if (hunger == hungry) {
                 die();
             } else {
                 hunger++; 
@@ -140,13 +139,14 @@ public class Herbivore extends JPanel implements Inhabitant {
         final int sixty = 60;
         final int seventy = 70;
         final int eighty = 80;
+        final Random gen = new Random();
         
         /* Map of 2D array for reference in y,x index format
          * 00   01     02
          * 10   CELL   12
          * 20   21     22
          */
-        direction = RandomGenerator.nextNumber(80);
+        direction = gen.nextInt(eighty);
         if (direction < ten) { //moves north
             y1 = 0;
             x1 = 1;
