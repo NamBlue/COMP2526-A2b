@@ -4,33 +4,33 @@ import java.awt.Point;
 import java.util.Random;
 
 /**
- * The Herbivore, represented as a yellow Cell.
+ * The Omnivore, represented as a blue Cell.
  * 
  * @author Jia Qi Lee
  * @version 2.0
  */
-public class Herbivore extends Inhabitant {
+public class Omnivore extends Inhabitant {
     private int hunger;
-    //RGB values of the color of the Herbivore
-    private static final int red = 244;
-    private static final int green = 255;
-    private static final int blue = 28;
+    //RGB values of the color of the Omnivore
+    private static final int red = 64;
+    private static final int green = 96;
+    private static final int blue = 222;
     
     /**
-     * Constructor for objects of type Herbivore.
+     * Constructor for objects of type Omnivore.
      * 
-     * @param location the cell to instantiate this Herbivore on
+     * @param location the cell to instantiate this Omnivore on
      */
-    public Herbivore(Cell location) {
+    public Omnivore(Cell location) {
         super(location, red, green, blue);
         hunger = 0;
     }
-       
+    
     /**
-     * Herbivore takes its turn.
+     * Omnivore takes its turn.
      */
     public void takeTurn() {
-        final int hungry = 10;
+        final int hungry = 2;
         
         if (!turnTaken) {
             if (hunger == hungry) {
@@ -44,7 +44,7 @@ public class Herbivore extends Inhabitant {
     }
     
     /**
-     * Herbivore moves if space is unoccupied or moves to a Plant and eats.
+     * Omnivore moves if space is unoccupied or moves to a Plant and eats.
      */
     private void move() {
         Cell[][] cells = cell.getAdjacentCells();
@@ -77,7 +77,7 @@ public class Herbivore extends Inhabitant {
     }
     
     /**
-     * Herbivore decides which direction to go before moving.
+     * Omnivore decides which direction to go before moving.
      * @return the Point direction decided
      */
     private Point direction() {
@@ -131,7 +131,7 @@ public class Herbivore extends Inhabitant {
     }
     
     /**
-     * Herbivore eats the Plant when on the same cell as the plant.
+     * Omnivore eats the Plant when on the same cell as the plant.
      * Resets its hunger back to 0(full stomach).
      * @param cell the cell with the plant to eat
      */

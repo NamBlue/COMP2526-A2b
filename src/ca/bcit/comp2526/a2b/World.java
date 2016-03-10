@@ -79,7 +79,6 @@ public class World {
      */
     private void spawn() {
         Cell cell;
-        final int ten = 10;
         final int twenty = 30;
         final int hundred = 100;
         
@@ -154,7 +153,7 @@ public class World {
         } else if (!bc) {
             time += ten; 
         }
-        System.out.println("This is This is year " 
+        System.out.println("This is year " 
                 + time + (bc ? " BC" : " AD"));
     }
     

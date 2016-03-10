@@ -51,32 +51,31 @@ public class Cell extends JPanel {
      * using the RandomGenerator class. Stores adjacent Cells from World.
      */
     public void init() {
-        final int ten = 10;
+        final int twenty = 20;
         final int forty = 40;
+        final int fifty = 50;
+        final int sixty = 60;
         final int hundred = 100;
         final Random gen = new Random();
         int seed = gen.nextInt(hundred);
         
 
-        if (seed < ten) {
+        if (seed < twenty) {
             inhabitant = new Herbivore(this);
             inhabitant.init();
         } else if (seed < forty) {
             inhabitant = new Plant(this);
             inhabitant.init();
+        } else if (seed < fifty) {
+            inhabitant = new Carnivore(this);
+            inhabitant.init();
+        } else if (seed < sixty) {
+            inhabitant = new Omnivore(this);
+            inhabitant.init();
         } else {
             inhabitant = null;
         }
         cell = world.getAdjacentCells(this);
-    }
-    
-    /**
-     * Advances time within the Cell by one turn.
-     */
-    public void takeTurn() {
-        if (inhabitant instanceof Herbivore) {
-            ((Herbivore)inhabitant).takeTurn();
-        }
     }
     
     /**
@@ -138,12 +137,21 @@ public class Cell extends JPanel {
     }
     
     /**
+     * Advances time within the Cell by one turn.
+     */
+    public void takeTurn() {
+        if (inhabitant != null) {
+            inhabitant.takeTurn();
+        }
+    }
+    
+    /**
      * Resets the Inhabitants' turn so that they 
      * are ready to take the next turn.
      */
     public void resetTurn() {
-        if (inhabitant instanceof Herbivore) {
-            ((Herbivore)inhabitant).resetTurn();
+        if (inhabitant != null) {
+            inhabitant.resetTurn();
         }
     }
 }
