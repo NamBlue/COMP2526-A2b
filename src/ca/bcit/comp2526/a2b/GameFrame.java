@@ -1,5 +1,7 @@
 package ca.bcit.comp2526.a2b;
 
+import sounds.SoundLoader;
+
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 
@@ -35,6 +37,7 @@ public class GameFrame extends JFrame {
             }
         }
         addMouseListener(new TurnListener(this));
+        SoundLoader.bgm.start();
     }
 
     /**

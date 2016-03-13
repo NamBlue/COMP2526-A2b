@@ -2,6 +2,7 @@ package ca.bcit.comp2526.a2b;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 public abstract class Inhabitant extends JPanel{
     protected Cell cell;
     protected boolean turnTaken;
+    private Image image;
     //RGB values of the color of the Inhabitant
     private int red;
     private int blue;
@@ -52,8 +54,8 @@ public abstract class Inhabitant extends JPanel{
     protected void takeTurn() {
         if (!turnTaken) {
             //Do Something
-        }
-        turnTaken = true;
+            turnTaken = true;
+        }   
     }
     
     /**
@@ -104,5 +106,10 @@ public abstract class Inhabitant extends JPanel{
     public void paintComponent(Graphics draw) {
         draw.setColor(new Color(red, green, blue));
         draw.fillRect(0, 0, getWidth(), getHeight());
+        draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+    }
+    
+    protected void setImage(Image img) {
+        image = img;
     }
 }
