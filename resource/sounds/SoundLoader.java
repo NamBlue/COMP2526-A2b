@@ -29,23 +29,23 @@ public class SoundLoader {
     }
     
     /**
-     * Plays the sound file in a continuous loop.
+     * Plays the currently loaded sound.
      */
-    public void start() {
-        try {
-            if (clip != null) {
-                new Thread() {
-                    public void run() {
-                        synchronized (clip) {
-                            clip.stop();
-                            clip.setFramePosition(0);
-                            clip.loop(Clip.LOOP_CONTINUOUSLY);
-                        }
-                    }
-                }.start();
+    public void play() {
+        new Thread() {
+            public void run() {
+                synchronized (clip) {
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    clip.start();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }.start();
+    }
+    
+    /**
+     * Pauses the currently playing sound.
+     */
+    public void pause() {
+        clip.stop();
     }
 }

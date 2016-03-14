@@ -2,9 +2,6 @@ package ca.bcit.comp2526.a2b;
 
 import images.ImageLoader;
 
-import java.awt.Image;
-import java.util.Random;
-
 /**
  * The Plant, represented as a green Cell.
  * 
@@ -13,12 +10,10 @@ import java.util.Random;
  */
 public class Plant extends Inhabitant {
     private int age;
-    public static Image plant = ImageLoader.getImage("plant.png");
-    public static Image plant1 = ImageLoader.getImage("plant1.png");
     //RGB values of the color of the Plant
-    private static final int red = 19;
-    private static final int green = 237;
-    private static final int blue = 12;
+    private static final int red = 0;
+    private static final int green = 255;
+    private static final int blue = 0;
         
     /**
      * Constructor for objects of type Plant.
@@ -26,24 +21,12 @@ public class Plant extends Inhabitant {
      * @param location the cell to instantiate this Plant on
      */
     public Plant(Cell location) {
-        super(location, red, green, blue);
-        Random gen = new Random();
-        switch (gen.nextInt(1)) {
-          case 0:
-              setImage(plant);
-              break;
-          case 1:
-              setImage(plant1);
-              break;
-          default:
-              
-        }
+        super(location, red, green, blue, ImageLoader.getPlant());
         age = 0;
-        revalidate();
     }
     
     /**
-     * Reserved for future implementation (reproduction growth etc). 
+     * Plant takes a turn. 
      */
     public void takeTurn() {
         final int old = 10;
@@ -53,8 +36,53 @@ public class Plant extends Inhabitant {
                 die();
             } else {
                 age ++;
+                darken();
+                if (checkNeighbors()) {
+                    reproduce();
+                }
             }
             turnTaken = true;
         }
+    }
+    
+    /**
+     * Plant reproduces. 
+     */
+    protected void reproduce() {
+        Cell there = cell.getRandomEmptyCell();
+        Plant plant = new Plant(there);
+        plant.init();
+        plant.turnTaken = true;
+        plant.revalidate();
+    }
+    
+    /**
+     * Checks nearby cells for neighbors if reproduction conditions are met.
+     * @return boolean true if conditions are met and false if not
+     */
+    protected boolean checkNeighbors() {
+        final int two = 2;
+        final int three = 3;
+        int plants = 0;
+        int empty = 0;
+        final Cell[][] cells = cell.getAdjacentCells();
+        
+        for (int row = 0; row < three; row++) {
+            for (int col = 0; col < three; col++) {
+                if (cells[row][col] != null) {
+                    if (cells[row][col].getInhabitant() == null) {
+                        empty++;
+                    } else if (cells[row][col].getInhabitant() 
+                                instanceof Plant) {
+                        plants++;
+                    }
+                }
+            }
+        }
+        if (plants >= three && empty >= two) {
+            return true;
+        } else {
+            return false;
+        }        
     }
 }

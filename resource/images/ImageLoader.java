@@ -2,6 +2,7 @@ package images;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Random;
 
 /**
  * Loader for image resources.
@@ -11,6 +12,8 @@ import java.awt.Toolkit;
  */
 public class ImageLoader {
     private static ImageLoader imageLoader = new ImageLoader();
+    //All URI for images are added here
+    private static String[] plants = {"plant.png", "plant1.png"};
     
     /**
      * Loads the image.
@@ -20,5 +23,17 @@ public class ImageLoader {
     public static Image getImage(String name) {        
         return Toolkit.getDefaultToolkit().getImage(
                 imageLoader.getClass().getResource(name));
+    }
+    
+    /**
+     * Loads a random Plant Image chosen from the array of URI's.
+     * @return the image randomly selected
+     */
+    public static Image getPlant() {
+        Random gen = new Random();
+        int seed = gen.nextInt(plants.length);
+        
+        return Toolkit.getDefaultToolkit().getImage(
+                imageLoader.getClass().getResource(plants[seed]));
     }
 }

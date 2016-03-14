@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -22,7 +23,7 @@ public class Cell extends JPanel {
     private final int col;
     private final World world;
     private Inhabitant inhabitant;
-    private Cell[][] cell;
+    Cell[][] cell; //Left on default for package visibility
     
     /**
      * Constructor for objects of type Cell.
@@ -76,6 +77,7 @@ public class Cell extends JPanel {
             inhabitant = null;
         }
         cell = world.getAdjacentCells(this);
+        
     }
     
     /**
@@ -134,6 +136,36 @@ public class Cell extends JPanel {
      */
     public Cell[][] getAdjacentCells() {
         return cell;
+    }
+    
+    /**
+     * Returns a random empty cell from all empty adjacent cells.
+     * @return the random empty cell
+     */
+    public Cell getRandomEmptyCell() {
+        final int three = 3;
+        ArrayList<Cell> cellList = new ArrayList<Cell>();
+        Random gen = new Random();
+        Cell emptycell;
+        int seed;
+        
+        for (int row = 0; row < three; row++) {
+            for (int col = 0; col < three; col++) {
+                if (cell[row][col] != null) {
+                    if (cell[row][col].getInhabitant() == null) {
+                        cellList.add(cell[row][col]);
+                    }
+                }
+            }
+        }
+        
+        if (cellList.size() == 0) {
+            return null;
+        } else {
+            seed = gen.nextInt(cellList.size());
+            emptycell = cellList.get(seed);
+            return emptycell;
+        }
     }
     
     /**

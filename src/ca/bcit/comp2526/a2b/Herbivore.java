@@ -12,9 +12,9 @@ import java.util.Random;
 public class Herbivore extends Inhabitant {
     private int hunger;
     //RGB values of the color of the Herbivore
-    private static final int red = 244;
+    private static final int red = 255;
     private static final int green = 255;
-    private static final int blue = 28;
+    private static final int blue = 0;
     
     /**
      * Constructor for objects of type Herbivore.
@@ -22,7 +22,7 @@ public class Herbivore extends Inhabitant {
      * @param location the cell to instantiate this Herbivore on
      */
     public Herbivore(Cell location) {
-        super(location, red, green, blue);
+        super(location, red, green, blue, null);
         hunger = 0;
     }
        
@@ -37,6 +37,10 @@ public class Herbivore extends Inhabitant {
                 die();
             } else {
                 hunger++; 
+                darken();
+                if (checkNeighbors()) {
+                    reproduce();
+                }
                 move();
             }
             turnTaken = true;
@@ -62,6 +66,7 @@ public class Herbivore extends Inhabitant {
                 if (inhabitant == null || inhabitant instanceof Plant) {
                     if (inhabitant instanceof Plant) { 
                         eat(cells[y1][x1]);
+                        rejuvenate(red, green, blue);
                     }
                     removeCell(cell);
                     setCell(cells[y1][x1]);
@@ -74,6 +79,52 @@ public class Herbivore extends Inhabitant {
             }
             stuck++;
         }
+    }
+    
+    /**
+     * Herbivore reproduces. 
+     */
+    protected void reproduce() {
+        Cell there = cell.getRandomEmptyCell();
+        Herbivore herb = new Herbivore(there);
+        herb.init();
+        herb.turnTaken = true;
+        herb.revalidate();
+    }
+    
+    /**
+     * Checks nearby cells for neighbors if reproduction conditions are met.
+     * @return boolean true if conditions are met and false if not
+     */
+    protected boolean checkNeighbors() {
+        final int one = 1;
+        final int two = 2;
+        final int three = 3;
+        int herbs = 0;
+        int empty = 0;
+        int food = 0;
+        final Cell[][] cells = cell.getAdjacentCells();
+        
+        for (int row = 0; row < three; row++) {
+            for (int col = 0; col < three; col++) {
+                if (cells[row][col] != null) {
+                    if (cells[row][col].getInhabitant() == null) {
+                        empty++;
+                    } else if (cells[row][col].getInhabitant() 
+                                instanceof Herbivore) {
+                        herbs++;
+                    } else if (cells[row][col].getInhabitant() 
+                            instanceof Plant) {
+                        food++;
+                    }
+                }
+            }
+        }
+        if (herbs >= one && empty >= one && food >= two) {
+            return true;
+        } else {
+            return false;
+        }        
     }
     
     /**

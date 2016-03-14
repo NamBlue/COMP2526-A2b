@@ -12,9 +12,9 @@ import java.util.Random;
 public class Omnivore extends Inhabitant {
     private int hunger;
     //RGB values of the color of the Omnivore
-    private static final int red = 64;
-    private static final int green = 96;
-    private static final int blue = 222;
+    private static final int red = 78;
+    private static final int green = 78;
+    private static final int blue = 255;
     
     /**
      * Constructor for objects of type Omnivore.
@@ -22,7 +22,7 @@ public class Omnivore extends Inhabitant {
      * @param location the cell to instantiate this Omnivore on
      */
     public Omnivore(Cell location) {
-        super(location, red, green, blue);
+        super(location, red, green, blue, null);
         hunger = 0;
     }
     
@@ -62,6 +62,7 @@ public class Omnivore extends Inhabitant {
                 if (inhabitant == null || inhabitant instanceof Plant) {
                     if (inhabitant instanceof Plant) { 
                         eat(cells[y1][x1]);
+                        rejuvenate(red, green, blue);
                     }
                     removeCell(cell);
                     setCell(cells[y1][x1]);

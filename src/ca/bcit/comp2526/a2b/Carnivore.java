@@ -22,7 +22,7 @@ public class Carnivore extends Inhabitant {
      * @param location the cell to instantiate this Carnivore on
      */
     public Carnivore(Cell location) {
-        super(location, red, green, blue);
+        super(location, red, green, blue, null);
         hunger = 0;
     }
     
@@ -62,6 +62,7 @@ public class Carnivore extends Inhabitant {
                 if (inhabitant == null || inhabitant instanceof Plant) {
                     if (inhabitant instanceof Plant) { 
                         eat(cells[y1][x1]);
+                        rejuvenate(red, green, blue);
                     }
                     removeCell(cell);
                     setCell(cells[y1][x1]);

@@ -79,7 +79,8 @@ public class World {
      */
     private void spawn() {
         Cell cell;
-        final int twenty = 30;
+        final int ten = 10;
+        final int twenty = 20;
         final int hundred = 100;
         
         if (gen.nextInt(hundred) < twenty) {
@@ -99,14 +100,32 @@ public class World {
                 plant.init();
                 plant.revalidate();
             }
-        }    
+        }
+        if (gen.nextInt(hundred) < ten) {
+            cell = getRandomEmptyCell();
+            
+            if (cell != null) {
+                Carnivore carn = new Carnivore(cell);
+                carn.init();
+                carn.revalidate();
+            }
+        }
+        if (gen.nextInt(hundred) < ten) {
+            cell = getRandomEmptyCell();
+            
+            if (cell != null) {
+                Omnivore omni = new Omnivore(cell);
+                omni.init();
+                omni.revalidate();
+            }
+        }
     }
     
     /**
-     * Returns a random empty cell from all empty cells for the spawn method.
+     * Returns a random empty cell from all empty cells for spawning.
      * @return the random empty cell
      */
-    private Cell getRandomEmptyCell() {
+    public Cell getRandomEmptyCell() {
         ArrayList<Cell> cellList = getAllEmptyCells();
         Cell cell;
         int seed;

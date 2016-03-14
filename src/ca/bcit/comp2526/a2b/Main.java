@@ -38,12 +38,12 @@ public final class Main {
     }
 
     /**
-     * Finds the position of the GameFrame on screen.
+     * Sets size and position of the GameFrame on screen.
      * @param frame the target GameFrame position
      */
     private static void position(final GameFrame frame) {
         final Dimension size;
-        final float percent = 0.80f;
+        final float percent = 0.85f;
 
         size = calculateScreenArea(percent, percent);
         frame.setSize(size);

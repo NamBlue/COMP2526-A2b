@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 
+import sounds.SoundLoader;
+
 /**
  * MouseListener class for GameFrame.
  * 
@@ -39,8 +41,10 @@ public class TurnListener extends MouseAdapter{
     public void mouseClicked(MouseEvent click) {
         if (timer.isRunning()) {
             timer.stop();
+            SoundLoader.bgm.pause();
         } else {
             timer.start();
+            SoundLoader.bgm.play();
         }
     }
     
