@@ -43,7 +43,7 @@ public final class Main {
      */
     private static void position(final GameFrame frame) {
         final Dimension size;
-        final float percent = 0.85f;
+        final float percent = 0.90f;
 
         size = calculateScreenArea(percent, percent);
         frame.setSize(size);

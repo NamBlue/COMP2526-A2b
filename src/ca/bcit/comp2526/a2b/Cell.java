@@ -1,8 +1,11 @@
 package ca.bcit.comp2526.a2b;
 
+import images.ImageLoader;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,6 +25,7 @@ public class Cell extends JPanel {
     private final int row;
     private final int col;
     private final World world;
+    private final Image image;
     private Inhabitant inhabitant;
     Cell[][] cell; //Left on default for package visibility
     
@@ -42,6 +46,7 @@ public class Cell extends JPanel {
         this.world = world;
         this.row = row;
         this.col = col;
+        image = ImageLoader.getSpace();
         cell = new Cell[three][three];
         setLayout(new GridLayout(1, 1));
         setBorder(BorderFactory.createLineBorder(Color.black));
@@ -85,11 +90,13 @@ public class Cell extends JPanel {
      * @param draw device context for the Panel to draw on
      */
     public void paintComponent(Graphics draw) {
-        final int r = 179;
-        final int g = 148;
-        final int b = 137;
+        final int r = 108;
+        final int g = 54;
+        final int b = 0;
         draw.setColor(new Color(r, g, b));
         draw.fillRect(0, 0, getWidth(), getHeight());
+        draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        repaint();
     }
     
     /**

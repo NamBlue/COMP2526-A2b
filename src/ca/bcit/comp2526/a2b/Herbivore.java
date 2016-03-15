@@ -1,7 +1,8 @@
 package ca.bcit.comp2526.a2b;
 
+import images.ImageLoader;
+
 import java.awt.Point;
-import java.util.Random;
 
 /**
  * The Herbivore, represented as a yellow Cell.
@@ -9,8 +10,7 @@ import java.util.Random;
  * @author Jia Qi Lee
  * @version 2.0
  */
-public class Herbivore extends Inhabitant {
-    private int hunger;
+public class Herbivore extends Inhabitant implements OmniEdible {
     //RGB values of the color of the Herbivore
     private static final int red = 255;
     private static final int green = 255;
@@ -22,7 +22,7 @@ public class Herbivore extends Inhabitant {
      * @param location the cell to instantiate this Herbivore on
      */
     public Herbivore(Cell location) {
-        super(location, red, green, blue, null);
+        super(location, red, green, blue, ImageLoader.getHerbi());
         hunger = 0;
     }
        
@@ -54,7 +54,7 @@ public class Herbivore extends Inhabitant {
         Cell[][] cells = cell.getAdjacentCells();
         boolean moved = false;
         int stuck = 0;
-        final int ten = 10;
+        final int tooStuck = 5;
         
         while (!moved) {
             Point point = direction();
@@ -74,7 +74,7 @@ public class Herbivore extends Inhabitant {
                 } 
             //if it is surrounded by impassable objects or cannot 
             //find a valid path after ten tries, give up
-            } else if (stuck == ten) {  
+            } else if (stuck == tooStuck) {  
                 moved = true;
             }
             stuck++;
@@ -125,69 +125,5 @@ public class Herbivore extends Inhabitant {
         } else {
             return false;
         }        
-    }
-    
-    /**
-     * Herbivore decides which direction to go before moving.
-     * @return the Point direction decided
-     */
-    private Point direction() {
-        int direction;
-        int y1 = 1;
-        int x1 = 1;
-        final int two = 2;
-        final int ten = 10;
-        final int twenty = 20;
-        final int thirty = 30;
-        final int forty = 40;
-        final int fifty = 50;
-        final int sixty = 60;
-        final int seventy = 70;
-        final int eighty = 80;
-        final Random gen = new Random();
-        
-        /* Map of 2D array for reference in y,x index format
-         * 00   01     02
-         * 10   CELL   12
-         * 20   21     22
-         */
-        direction = gen.nextInt(eighty);
-        if (direction < ten) { //moves north
-            y1 = 0;
-            x1 = 1;
-        } else if (direction < twenty) { //moves north east
-            y1 = 0;
-            x1 = two;
-        } else if (direction < thirty) { //moves east
-            y1 = 1;
-            x1 = two;
-        } else if (direction < forty) { //moves south east
-            y1 = two;
-            x1 = two;
-        } else if (direction < fifty) { //moves south
-            y1 = two;
-            x1 = 1;
-        } else if (direction < sixty) { //moves south west
-            y1 = two;
-            x1 = 0;
-        } else if (direction < seventy) { //moves west
-            y1 = 1;
-            x1 = 0;
-        } else if (direction < eighty) { //moves north west
-            y1 = 0;
-            x1 = 0;
-        }
-        Point point = new Point(x1, y1);
-        return point;
-    }
-    
-    /**
-     * Herbivore eats the Plant when on the same cell as the plant.
-     * Resets its hunger back to 0(full stomach).
-     * @param cell the cell with the plant to eat
-     */
-    private void eat(Cell cell) {
-        cell.getInhabitant().removeCell(cell);
-        hunger = 0;
     }
 }

@@ -13,16 +13,21 @@ import java.util.Random;
 public class ImageLoader {
     private static ImageLoader imageLoader = new ImageLoader();
     //All URI for images are added here
-    private static String[] plants = {"plant.png", "plant1.png"};
+    private static String[] plants = {"plant.png", "plant1.png", "plant2.png"};
+    private static String[] omni = {"omni.png"};
+    private static String[] carni = {"carni.png"};
+    private static String[] herbi = {"herbi.png"};
+    private static String[] cell = {"cell.png", "cell1.png" , "cell2.png" ,
+        "cell3.png", "cell3.png", "cell3.png", "cell3.png"};
     
     /**
      * Loads the image.
-     * @param name the name of the image file
+     * @param name the URI of the image file
      * @return the image
      */
     public static Image getImage(String name) {        
         return Toolkit.getDefaultToolkit().getImage(
-                imageLoader.getClass().getResource(name));
+                imageLoader.getClass().getResource(name));       
     }
     
     /**
@@ -35,5 +40,56 @@ public class ImageLoader {
         
         return Toolkit.getDefaultToolkit().getImage(
                 imageLoader.getClass().getResource(plants[seed]));
+    }
+    
+    /**
+     * Loads a random Herbivore Image chosen from the array of URI's.
+     * @return the image randomly selected
+     */
+    public static Image getHerbi() {
+        Random gen = new Random();
+        int seed = gen.nextInt(herbi.length);
+        
+        return Toolkit.getDefaultToolkit().getImage(
+                imageLoader.getClass().getResource(herbi[seed]));
+    }
+    
+    /**
+     * Loads a random Carnivore Image chosen from the array of URI's.
+     * @return the image randomly selected
+     */
+    public static Image getCarni() {
+        Random gen = new Random();
+        int seed = gen.nextInt(carni.length);
+        
+        return Toolkit.getDefaultToolkit().getImage(
+                imageLoader.getClass().getResource(carni[seed]));
+    }
+    
+    /**
+     * Loads a random Omnivore Image chosen from the array of URI's.
+     * @return the image randomly selected
+     */
+    public static Image getOmni() {
+        Random gen = new Random();
+        int seed = gen.nextInt(omni.length);
+        
+        return Toolkit.getDefaultToolkit().getImage(
+                imageLoader.getClass().getResource(omni[seed]));
+    }
+    
+    /**
+     * Loads a random Cell Image chosen from the array of URI's.
+     * @return the image randomly selected
+     */
+    public static Image getSpace() {
+        Random gen = new Random();
+        int seed = gen.nextInt(cell.length);
+        if (cell[seed] == null) {
+            return null;
+        }
+        
+        return Toolkit.getDefaultToolkit().getImage(
+                imageLoader.getClass().getResource(cell[seed]));
     }
 }

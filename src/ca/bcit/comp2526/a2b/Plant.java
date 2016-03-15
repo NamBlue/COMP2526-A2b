@@ -8,8 +8,7 @@ import images.ImageLoader;
  * @author Jia Qi Lee
  * @version 2.0
  */
-public class Plant extends Inhabitant {
-    private int age;
+public class Plant extends Inhabitant implements OmniEdible{
     //RGB values of the color of the Plant
     private static final int red = 0;
     private static final int green = 255;
@@ -22,7 +21,6 @@ public class Plant extends Inhabitant {
      */
     public Plant(Cell location) {
         super(location, red, green, blue, ImageLoader.getPlant());
-        age = 0;
     }
     
     /**

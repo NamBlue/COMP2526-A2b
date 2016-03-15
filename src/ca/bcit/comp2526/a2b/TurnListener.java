@@ -1,5 +1,7 @@
 package ca.bcit.comp2526.a2b;
 
+import sounds.SoundLoader;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -7,18 +9,16 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 
-import sounds.SoundLoader;
-
 /**
  * MouseListener class for GameFrame.
  * 
  * @author Jia Qi Lee
  * @version 2.0
  */
-public class TurnListener extends MouseAdapter{
+public class TurnListener extends MouseAdapter {
     private final GameFrame gameframe;
     private final Timer timer;
-    private final int delay = 700;
+    private final int delay = 1000;
     
     /**
      * Constructor for objects of type TurnListener.

@@ -8,11 +8,12 @@ Blue = Omnivore
 Magenta = Carnivore
 Yellow = Herbivore
 Green = Plant
-Light Brown = Empty Land
+Any non solid color cell = Empty Land
 
 The darker the color, the shorter the lifeforms lifespan is.
 
 Credits:
 
 Background Music - Jurassic War(1997)(Abandonware)
+Sprites - Jurassic War(1997)(Abandonware)
 Sprites - Saved by munch nbit (https://www.pinterest.com/pin/419890365233186948/)
