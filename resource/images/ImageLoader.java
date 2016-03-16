@@ -13,12 +13,15 @@ import java.util.Random;
 public class ImageLoader {
     private static ImageLoader imageLoader = new ImageLoader();
     //All URI for images are added here
-    private static String[] plants = {"plant.png", "plant1.png", "plant2.png"};
-    private static String[] omni = {"omni.png"};
-    private static String[] carni = {"carni.png"};
-    private static String[] herbi = {"herbi.png"};
+    private static String[] plants = {"plant.png", "plant1.png", "plant2.png",
+        "plant3.png"};
+    private static String[] omni = {"omni.png", "omni1.png", "omni2.png"};
+    private static String[] carni = {"carni.png", "carni1.png", "carni2.png"};
+    private static String[] herbi = {"herbi.png" , "herbi1.png", "herbi2.png",
+        "herbi3.png"};
     private static String[] cell = {"cell.png", "cell1.png" , "cell2.png" ,
-        "cell3.png", "cell3.png", "cell3.png", "cell3.png"};
+        "cell3.png", "cell3.png", "cell3.png", "cell3.png", "cell.png",
+        "cell1.png", "cell3.png", "cell3.png"};
     
     /**
      * Loads the image.

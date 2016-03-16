@@ -54,7 +54,6 @@ public class Herbivore extends Inhabitant implements OmniEdible {
         Cell[][] cells = cell.getAdjacentCells();
         boolean moved = false;
         int stuck = 0;
-        final int tooStuck = 5;
         
         while (!moved) {
             Point point = direction();

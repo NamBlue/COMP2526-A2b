@@ -38,17 +38,13 @@ public class Omnivore extends Inhabitant {
             } else {
                 hunger++;
                 darken();
+                if (checkNeighbors()) {
+                    reproduce();
+                }
                 move();
             }
             turnTaken = true;
         }
-    }
-    
-    /**
-     * Inhabitant reproduces when its conditions are met.
-     */
-    protected void reproduce() {
-        
     }
     
     /**
@@ -58,7 +54,6 @@ public class Omnivore extends Inhabitant {
         Cell[][] cells = cell.getAdjacentCells();
         boolean moved = false;
         int stuck = 0;
-        final int tooStuck = 5;
         
         while (!moved) {
             Point point = direction();
@@ -83,5 +78,50 @@ public class Omnivore extends Inhabitant {
             }
             stuck++;
         }
+    }
+    
+    /**
+     * Omnivore reproduces. 
+     */
+    protected void reproduce() {
+        Cell there = cell.getRandomEmptyCell();
+        Omnivore omni = new Omnivore(there);
+        omni.init();
+        omni.turnTaken = true;
+        omni.revalidate();
+    }
+    
+    /**
+     * Checks nearby cells for neighbors if reproduction conditions are met.
+     * @return boolean true if conditions are met and false if not
+     */
+    protected boolean checkNeighbors() {
+        final int one = 1;
+        final int three = 3;
+        int omnis = 0;
+        int empty = 0;
+        int food = 0;
+        final Cell[][] cells = cell.getAdjacentCells();
+        
+        for (int row = 0; row < three; row++) {
+            for (int col = 0; col < three; col++) {
+                if (cells[row][col] != null) {
+                    if (cells[row][col].getInhabitant() == null) {
+                        empty++;
+                    } else if (cells[row][col].getInhabitant() 
+                                instanceof Omnivore) {
+                        omnis++;
+                    } else if (cells[row][col].getInhabitant() 
+                            instanceof OmniEdible) {
+                        food++;
+                    }
+                }
+            }
+        }
+        if (omnis >= one && empty >= three && food >= three) {
+            return true;
+        } else {
+            return false;
+        }        
     }
 }

@@ -15,6 +15,9 @@ import javax.swing.JPanel;
  * @version 2.0
  */
 public abstract class Inhabitant extends JPanel{
+    // the amount of move tries to attempt before giving up
+    // lowered to 0 to improve performance
+    protected final int tooStuck = 0; 
     protected Cell cell;
     protected boolean turnTaken;
     protected int hunger;

@@ -29,7 +29,7 @@ public class Carnivore extends Inhabitant implements OmniEdible{
      * Carnivore takes its turn.
      */
     public void takeTurn() {
-        final int hungry = 5;
+        final int hungry = 3;
         
         if (!turnTaken) {
             if (hunger == hungry) {
@@ -44,20 +44,12 @@ public class Carnivore extends Inhabitant implements OmniEdible{
     }
     
     /**
-     * Inhabitant reproduces when its conditions are met.
-     */
-    protected void reproduce() {
-        
-    }
-    
-    /**
      * Carnivore moves if space is unoccupied or moves to a Plant and eats.
      */
     private void move() {
         Cell[][] cells = cell.getAdjacentCells();
         boolean moved = false;
         int stuck = 0;
-        final int tooStuck = 5;
         
         while (!moved) {
             Point point = direction();
@@ -82,5 +74,50 @@ public class Carnivore extends Inhabitant implements OmniEdible{
             }
             stuck++;
         }
+    }
+    
+    /**
+     * Carnivore reproduces. 
+     */
+    protected void reproduce() {
+        Cell there = cell.getRandomEmptyCell();
+        Carnivore carni = new Carnivore(there);
+        carni.init();
+        carni.turnTaken = true;
+        carni.revalidate();
+    }
+    
+    /**
+     * Checks nearby cells for neighbors if reproduction conditions are met.
+     * @return boolean true if conditions are met and false if not
+     */
+    protected boolean checkNeighbors() {
+        final int one = 1;
+        final int three = 3;
+        int carni = 0;
+        int empty = 0;
+        int food = 0;
+        final Cell[][] cells = cell.getAdjacentCells();
+        
+        for (int row = 0; row < three; row++) {
+            for (int col = 0; col < three; col++) {
+                if (cells[row][col] != null) {
+                    if (cells[row][col].getInhabitant() == null) {
+                        empty++;
+                    } else if (cells[row][col].getInhabitant() 
+                                instanceof Carnivore) {
+                        carni++;
+                    } else if (cells[row][col].getInhabitant() 
+                            instanceof Herbivore) {
+                        food++;
+                    }
+                }
+            }
+        }
+        if (carni >= one && empty >= three && food >= three) {
+            return true;
+        } else {
+            return false;
+        }        
     }
 }
