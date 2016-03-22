@@ -27,7 +27,7 @@ public class Cell extends JPanel {
     private final World world;
     private final Image image;
     private Inhabitant inhabitant;
-    Cell[][] cell; //Left on default for package visibility
+    private Cell[][] cell;
     
     /**
      * Constructor for objects of type Cell.

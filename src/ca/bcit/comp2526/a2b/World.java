@@ -80,12 +80,15 @@ public class World {
     private void spawn() {
         Cell cell;
         final int ten = 10;
+        final int fifty = 50;
         final int hundred = 100;
         cell = getRandomEmptyCell();
-        if (cell != null) {
-            Herbivore herbivore = new Herbivore(cell);
-            herbivore.init();
-            herbivore.revalidate();
+        if (gen.nextInt(hundred) < fifty) {
+            if (cell != null) {
+                Herbivore herbivore = new Herbivore(cell);
+                herbivore.init();
+                herbivore.revalidate();
+            }
         }
         cell = getRandomEmptyCell();
         if (cell != null) {

@@ -37,6 +37,9 @@ public class Carnivore extends Inhabitant implements OmniEdible{
             } else {
                 hunger++;
                 darken();
+                if (checkNeighbors()) {
+                    reproduce();
+                }
                 move();
             }
             turnTaken = true;
@@ -68,7 +71,7 @@ public class Carnivore extends Inhabitant implements OmniEdible{
                     moved = true;
                 } 
             //if it is surrounded by impassable objects or cannot 
-            //find a valid path after ten tries, give up
+            //find a valid path after specified tries, give up
             } else if (stuck == tooStuck) {  
                 moved = true;
             }

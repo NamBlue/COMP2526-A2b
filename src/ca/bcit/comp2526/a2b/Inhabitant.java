@@ -16,13 +16,12 @@ import javax.swing.JPanel;
  */
 public abstract class Inhabitant extends JPanel{
     // the amount of move tries to attempt before giving up
-    // lowered to 0 to improve performance
-    protected final int tooStuck = 0; 
+    protected final int tooStuck = 5; 
     protected Cell cell;
     protected boolean turnTaken;
     protected int hunger;
     protected int age;
-    private Image image;
+    private final Image image;
     //RGB values of the color of the Inhabitant
     private int red;
     private int blue;
@@ -44,7 +43,7 @@ public abstract class Inhabitant extends JPanel{
         }
         this.cell = cell;
         hunger = 0;
-        age = 0 ;
+        age = 0;
         turnTaken = false;
         red = rd;
         green = gr;
@@ -60,14 +59,9 @@ public abstract class Inhabitant extends JPanel{
     }
     
     /**
-     * Inhabitant moves forward in time. Usually overridden.
+     * Inhabitant moves forward in time.
      */
-    protected void takeTurn() {
-        if (!turnTaken) {
-            //Do Something
-            turnTaken = true;
-        }   
-    }
+    protected abstract void takeTurn();
     
     /**
      * Inhabitant is ready to take the next turn.
@@ -96,9 +90,7 @@ public abstract class Inhabitant extends JPanel{
      * Checks nearby cells for neighbors if reproduction conditions are met.
      * @return boolean true if conditions are met and false if not
      */
-    protected boolean checkNeighbors() {
-        return false;
-    } 
+    protected abstract boolean checkNeighbors();
     
     /**
      * Inhabitant "dies".
@@ -165,14 +157,6 @@ public abstract class Inhabitant extends JPanel{
         red = rd;
         green = gr;
         blue = bl;
-    }
-    
-    /**
-     * Sets the Image of the Inhabitant.
-     * @param img the image to set
-     */
-    protected void setImage(Image img) {
-        image = img;
     }
     
     /**
