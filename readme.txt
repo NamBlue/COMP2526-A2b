@@ -11,6 +11,7 @@ Green = Plant
 Any non solid color cell = Empty Land
 
 The darker the color, the shorter the lifeforms lifespan is.
+To create a continuous simulation of the life cycle, additional Inhabitants are created every turn using the spawn method.
 
 Credits:
 
