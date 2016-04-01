@@ -148,6 +148,8 @@ public abstract class Inhabitant extends JPanel{
         red *= factor;
         green *= factor;
         blue *= factor;
+        repaint();
+        revalidate();
     }
     
     /**
@@ -160,6 +162,8 @@ public abstract class Inhabitant extends JPanel{
         red = rd;
         green = gr;
         blue = bl;
+        repaint();
+        revalidate();
     }
     
     /**
