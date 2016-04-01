@@ -88,9 +88,6 @@ public class ImageLoader {
     public static Image getSpace() {
         Random gen = new Random();
         int seed = gen.nextInt(cell.length);
-        if (cell[seed] == null) {
-            return null;
-        }
         
         return Toolkit.getDefaultToolkit().getImage(
                 imageLoader.getClass().getResource(cell[seed]));

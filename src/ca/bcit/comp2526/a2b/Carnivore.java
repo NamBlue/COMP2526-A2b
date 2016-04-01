@@ -15,6 +15,7 @@ public class Carnivore extends Inhabitant implements OmniEdible{
     private static final int red = 255;
     private static final int green = 0;
     private static final int blue = 255;
+    private static final int starve = 3;
     
     /**
      * Constructor for objects of type Carnivore.
@@ -29,10 +30,9 @@ public class Carnivore extends Inhabitant implements OmniEdible{
      * Carnivore takes its turn.
      */
     public void takeTurn() {
-        final int hungry = 3;
         
         if (!turnTaken) {
-            if (hunger == hungry) {
+            if (hunger == starve) {
                 die();
             } else {
                 hunger++;
@@ -70,11 +70,10 @@ public class Carnivore extends Inhabitant implements OmniEdible{
                     setCell(cells[y1][x1]);
                     moved = true;
                 } 
+            } 
             //if it is surrounded by impassable objects or cannot 
             //find a valid path after specified tries, give up
-            } else if (stuck == tooStuck) {  
-                moved = true;
-            }
+            moved = (stuck == tooStuck);
             stuck++;
         }
     }
@@ -111,7 +110,7 @@ public class Carnivore extends Inhabitant implements OmniEdible{
                                 instanceof Carnivore) {
                         carni++;
                     } else if (cells[row][col].getInhabitant() 
-                            instanceof Herbivore) {
+                                instanceof Herbivore) {
                         food++;
                     }
                 }

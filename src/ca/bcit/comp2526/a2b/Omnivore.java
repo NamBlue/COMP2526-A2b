@@ -15,6 +15,7 @@ public class Omnivore extends Inhabitant {
     private static final int red = 78;
     private static final int green = 78;
     private static final int blue = 255;
+    private static final int starve = 2;
     
     /**
      * Constructor for objects of type Omnivore.
@@ -30,10 +31,9 @@ public class Omnivore extends Inhabitant {
      * Omnivore takes its turn.
      */
     public void takeTurn() {
-        final int hungry = 2;
         
         if (!turnTaken) {
-            if (hunger == hungry) {
+            if (hunger == starve) {
                 die();
             } else {
                 hunger++;
@@ -71,11 +71,10 @@ public class Omnivore extends Inhabitant {
                     setCell(cells[y1][x1]);
                     moved = true;
                 } 
+            } 
             //if it is surrounded by impassable objects or cannot 
-            //find a valid path after ten tries, give up
-            } else if (stuck == tooStuck) {  
-                moved = true;
-            }
+            //find a valid path after specified tries, give up
+            moved = (stuck == tooStuck);
             stuck++;
         }
     }
@@ -112,7 +111,7 @@ public class Omnivore extends Inhabitant {
                                 instanceof Omnivore) {
                         omnis++;
                     } else if (cells[row][col].getInhabitant() 
-                            instanceof OmniEdible) {
+                                instanceof OmniEdible) {
                         food++;
                     }
                 }

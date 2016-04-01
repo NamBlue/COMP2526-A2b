@@ -15,6 +15,7 @@ public class Herbivore extends Inhabitant implements OmniEdible {
     private static final int red = 255;
     private static final int green = 255;
     private static final int blue = 0;
+    private static final int starve = 10;
     
     /**
      * Constructor for objects of type Herbivore.
@@ -30,10 +31,9 @@ public class Herbivore extends Inhabitant implements OmniEdible {
      * Herbivore takes its turn.
      */
     public void takeTurn() {
-        final int hungry = 10;
         
         if (!turnTaken) {
-            if (hunger == hungry) {
+            if (hunger == starve) {
                 die();
             } else {
                 hunger++; 
@@ -70,12 +70,11 @@ public class Herbivore extends Inhabitant implements OmniEdible {
                     removeCell(cell);
                     setCell(cells[y1][x1]);
                     moved = true;
-                } 
+                }
+            }  
             //if it is surrounded by impassable objects or cannot 
             //find a valid path after ten tries, give up
-            } else if (stuck == tooStuck) {  
-                moved = true;
-            }
+            moved = (stuck == tooStuck);
             stuck++;
         }
     }
@@ -113,7 +112,7 @@ public class Herbivore extends Inhabitant implements OmniEdible {
                                 instanceof Herbivore) {
                         herbs++;
                     } else if (cells[row][col].getInhabitant() 
-                            instanceof Plant) {
+                                instanceof Plant) {
                         food++;
                     }
                 }

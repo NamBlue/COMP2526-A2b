@@ -75,49 +75,45 @@ public class World {
     }
     
     /**
-     * Creates the Inhabitants into the World based on random probability.
+     * Creates the Inhabitants into the World.
      */
     private void spawn() {
         Cell cell;
-        final int ten = 10;
-        final int fifty = 50;
-        final int hundred = 100;
-        cell = getRandomEmptyCell();
-        if (gen.nextInt(hundred) < fifty) {
+        final int plantSpawnNo = 6;
+        final int omniSpawnNo = 2;
+        final int carniSpawnNo = 2;
+        final int herbiSpawnNo = 2;
+        
+        for (int i = 0; i < herbiSpawnNo; i++) {
+            cell = getRandomEmptyCell();            
             if (cell != null) {
                 Herbivore herbivore = new Herbivore(cell);
                 herbivore.init();
                 herbivore.revalidate();
             }
         }
-        cell = getRandomEmptyCell();
-        if (cell != null) {
-            Plant plant = new Plant(cell);
-            plant.init();
-            plant.revalidate();
-        }
-        cell = getRandomEmptyCell();
-        if (cell != null) {
-            Plant plant = new Plant(cell);
-            plant.init();
-            plant.revalidate();
-        }
-        if (gen.nextInt(hundred) < ten) {
-            cell = getRandomEmptyCell();
-            
+        for (int i = 0; i < carniSpawnNo; i++) {
+            cell = getRandomEmptyCell();            
             if (cell != null) {
                 Carnivore carn = new Carnivore(cell);
                 carn.init();
                 carn.revalidate();
             }
         }
-        if (gen.nextInt(hundred) < ten) {
-            cell = getRandomEmptyCell();
-            
+        for (int i = 0; i < omniSpawnNo; i++) {
+            cell = getRandomEmptyCell();           
             if (cell != null) {
                 Omnivore omni = new Omnivore(cell);
                 omni.init();
                 omni.revalidate();
+            }
+        }
+        for (int i = 0; i < plantSpawnNo; i++) {
+            cell = getRandomEmptyCell();          
+            if (cell != null) {
+                Plant plant = new Plant(cell);
+                plant.init();
+                plant.revalidate();
             }
         }
     }

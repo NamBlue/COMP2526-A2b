@@ -13,6 +13,7 @@ public class Plant extends Inhabitant implements OmniEdible{
     private static final int red = 0;
     private static final int green = 255;
     private static final int blue = 0;
+    private static final int lifespan = 10;
         
     /**
      * Constructor for objects of type Plant.
@@ -27,10 +28,9 @@ public class Plant extends Inhabitant implements OmniEdible{
      * Plant takes a turn. 
      */
     public void takeTurn() {
-        final int old = 10;
         
         if (!turnTaken) {
-            if (age == old) {
+            if (age == lifespan) {
                 die();
             } else {
                 age ++;

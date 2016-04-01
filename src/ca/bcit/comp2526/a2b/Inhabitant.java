@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  */
 public abstract class Inhabitant extends JPanel{
     // the amount of move tries to attempt before giving up
-    protected final int tooStuck = 5; 
+    protected final int tooStuck = 0; 
     protected Cell cell;
     protected boolean turnTaken;
     protected int hunger;
@@ -134,7 +134,6 @@ public abstract class Inhabitant extends JPanel{
         draw.setColor(new Color(red, green, blue));
         draw.fillRect(0, 0, getWidth(), getHeight());
         draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        repaint();
     }
     
     /**

@@ -65,7 +65,6 @@ public class Cell extends JPanel {
         final Random gen = new Random();
         int seed = gen.nextInt(hundred);
         
-
         if (seed < twenty) {
             inhabitant = new Herbivore(this);
             inhabitant.init();
@@ -81,8 +80,7 @@ public class Cell extends JPanel {
         } else {
             inhabitant = null;
         }
-        cell = world.getAdjacentCells(this);
-        
+        cell = world.getAdjacentCells(this);        
     }
     
     /**
