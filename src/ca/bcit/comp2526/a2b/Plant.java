@@ -41,6 +41,7 @@ public class Plant extends Inhabitant implements OmniEdible{
             }
             turnTaken = true;
         }
+        repaint();
     }
     
     /**

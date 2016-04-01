@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class TurnListener extends MouseAdapter {
     private final GameFrame gameframe;
     private final Timer timer;
-    private final int delay = 500;
+    private final int delay = 1000;
     
     /**
      * Constructor for objects of type TurnListener.
