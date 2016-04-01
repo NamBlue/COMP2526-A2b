@@ -136,6 +136,8 @@ public abstract class Inhabitant extends JPanel{
         draw.setColor(new Color(red, green, blue));
         draw.fillRect(0, 0, getWidth(), getHeight());
         draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        repaint();
+        revalidate();
     }
     
     /**

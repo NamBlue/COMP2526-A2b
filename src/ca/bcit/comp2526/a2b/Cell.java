@@ -95,6 +95,8 @@ public class Cell extends JPanel {
         draw.setColor(new Color(r, g, b));
         draw.fillRect(0, 0, getWidth(), getHeight());
         draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        repaint();
+        revalidate();
     }
     
     /**
