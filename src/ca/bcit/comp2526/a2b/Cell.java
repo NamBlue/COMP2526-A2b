@@ -88,13 +88,13 @@ public class Cell extends JPanel {
      * @param draw device context for the Panel to draw on
      */
     public void paintComponent(Graphics draw) {
+        super.paintComponent(draw);
         final int r = 108;
         final int g = 54;
         final int b = 0;
         draw.setColor(new Color(r, g, b));
         draw.fillRect(0, 0, getWidth(), getHeight());
         draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        repaint();
     }
     
     /**
@@ -180,6 +180,8 @@ public class Cell extends JPanel {
         if (inhabitant != null) {
             inhabitant.takeTurn();
         }
+        repaint();
+        revalidate();
     }
     
     /**

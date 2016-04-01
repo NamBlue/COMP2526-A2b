@@ -111,6 +111,7 @@ public abstract class Inhabitant extends JPanel{
         this.cell = cell;
         cell.setInhabitant(this);
         cell.add(this);
+        repaint();
     }
     
     /**
@@ -131,11 +132,10 @@ public abstract class Inhabitant extends JPanel{
      * @param draw device context for the Panel to draw on
      */
     public void paintComponent(Graphics draw) {
+        super.paintComponent(draw);
         draw.setColor(new Color(red, green, blue));
         draw.fillRect(0, 0, getWidth(), getHeight());
         draw.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        repaint();
-        revalidate();
     }
     
     /**
