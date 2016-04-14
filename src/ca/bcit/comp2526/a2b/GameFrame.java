@@ -24,6 +24,7 @@ public class GameFrame extends JFrame {
      * Initializes the GameFrame.
      */
     public void init() {
+        final int delay = 1000;
         setTitle("Assignment 2b");
         setLayout(new GridLayout(world.getRowCount(),
                                  world.getColumnCount()));
@@ -35,6 +36,13 @@ public class GameFrame extends JFrame {
             }
         }
         addMouseListener(new TurnListener(this));
+        new java.util.Timer().schedule( 
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        validate();
+                    }
+                }, delay);    
     }
 
     /**

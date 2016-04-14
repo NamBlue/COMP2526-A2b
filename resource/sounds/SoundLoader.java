@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
 public class SoundLoader {
     private Clip clip;
     
-    public static SoundLoader bgm = new SoundLoader("bgm.wav");
+    public static final SoundLoader bgm = new SoundLoader("bgm.wav");
     
     /**
      * Constructor for objects of type SoundLoader.
